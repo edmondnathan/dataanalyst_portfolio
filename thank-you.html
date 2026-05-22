@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Edmond Nathan - Data Analyst Portfolio</title>
+    
+    <!-- Same meta tags as main site for consistency -->
+    <meta name="description" content="Thank you for contacting Edmond Nathan, Senior Data Analyst specializing in business intelligence, data visualization, Power BI, Tableau, and SQL">
+    <meta name="author" content="Edmond Nathan">
+    
+    <!-- Same favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Same stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Additional styles for thank-you page */
+        .thank-you {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .thank-you-content {
+            max-width: 600px;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .thank-you-icon {
+            font-size: 4rem;
+            color: #4361ee;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .thank-you h1 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .thank-you p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .thank-you-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .countdown {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+        
+        .countdown-number {
+            font-weight: bold;
+            color: #4361ee;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .thank-you-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .thank-you h1 {
+                font-size: 2rem;
+            }
+            
+            .thank-you-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you">
+        <div class="thank-you-content">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <h1>Message Sent Successfully!</h1>
+            
+            <p>Thank you for reaching out, <strong id="userName">[Your Name]</strong>!</p>
+            
+            <p>I've received your message and will get back to you within <strong>24-48 hours</strong>. I look forward to discussing how we can work together on your data analysis needs.</p>
+            
+            <p>In the meantime, feel free to:</p>
+            
+            <div class="thank-you-actions">
+                <a href="index.html" class="btn btn--primary">
+                    <i class="fas fa-home"></i> Return Home
+                </a>
+                
+                <a href="index.html#projects" class="btn btn--outline">
+                    <i class="fas fa-project-diagram"></i> View Projects
+                </a>
+                
+                <a href="https://www.linkedin.com/in/edmond-nathan/" target="_blank" class="btn btn--outline">
+                    <i class="fab fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </div>
+            
+            <div class="countdown">
+                You will be redirected to the homepage in <span class="countdown-number" id="countdown">10</span> seconds
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the user's name from URL parameters if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        if (name) {
+            document.getElementById('userName').textContent = name;
+        }
+        
+        // Countdown timer for redirect
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+        
+        // Allow manual override of redirect
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                clearInterval(countdownInterval);
+            });
+        });
+    </script>
+</body>
+</html>
